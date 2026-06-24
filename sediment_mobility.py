@@ -2,7 +2,7 @@
 Sediment mobility parameters and sampling-distribution plotting
 
 Author: Joao Cascalho (FCUL / IDL - University of Lisbon)
-Repository version: 1.0.0
+Repository version: 1.1.0
 
 Purpose
 -------
@@ -109,7 +109,7 @@ PLOT_STYLE = {
     "axes_labelsize": 10,
     "legend_fontsize": 8.5,
     "tick_labelsize": 8.5,
-    "figsize": (6.2, 4.8),
+    "figsize": (7.8, 5.2),
     "dpi_png": 600,
     "large_marker_size": 28,
     "small_marker_size": 26,
@@ -413,8 +413,11 @@ def make_figure(samples: pd.DataFrame, all_coordinates: pd.DataFrame, out_png: P
     ax.set_ylabel("Y coordinate (m)")
     ax.xaxis.set_major_formatter(FuncFormatter(format_with_space_thousands))
     ax.yaxis.set_major_formatter(FuncFormatter(format_with_space_thousands))
-    ax.xaxis.set_major_locator(MaxNLocator(nbins=6))
+    ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
     ax.yaxis.set_major_locator(MaxNLocator(nbins=6))
+    ax.tick_params(axis="x", labelrotation=30)
+    for label in ax.get_xticklabels():
+        label.set_horizontalalignment("right")
     ax.grid(
         True,
         linestyle=PLOT_STYLE["grid_linestyle"],
@@ -429,7 +432,15 @@ def make_figure(samples: pd.DataFrame, all_coordinates: pd.DataFrame, out_png: P
         handles.append(contour_proxy)
         labels.append("Relative sample-density contours")
 
-    ax.legend(handles, labels, loc="upper left", bbox_to_anchor=(1.02, 1.0), borderaxespad=0, frameon=False)
+    ax.legend(
+        handles,
+        labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.16),
+        borderaxespad=0,
+        frameon=False,
+        ncol=2,
+    )
     ax.text(
         0.01,
         0.01,
@@ -441,7 +452,7 @@ def make_figure(samples: pd.DataFrame, all_coordinates: pd.DataFrame, out_png: P
         color="0.28",
     )
 
-    fig.tight_layout(rect=[0, 0, 0.78, 1])
+    fig.tight_layout(rect=[0, 0.12, 1, 1])
     fig.savefig(out_png, dpi=PLOT_STYLE["dpi_png"], bbox_inches="tight", facecolor="white")
     fig.savefig(out_pdf, bbox_inches="tight", facecolor="white")
     plt.close(fig)

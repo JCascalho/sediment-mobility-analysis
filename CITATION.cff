@@ -1,19 +1,21 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
 title: "Sediment Mobility"
-version: "1.0.0"
-date-released: "2026-06-09"
+version: "1.1.0"
+date-released: "2026-06-24"
 authors:
   - family-names: "Cascalho"
     given-names: "Joao"
     affiliation: "FCUL / IDL - University of Lisbon"
 license: "MIT"
 repository-code: "https://github.com/JCascalho/sediment-mobility"
-abstract: "Python routine for calculating sediment-mobility parameters from sediment samples and plotting the sampling distribution of large and nested small grids."
+abstract: "Python workflows for calculating sediment entrainment thresholds from grain-size data and evaluating current-induced bed stress, threshold exceedance, and remobilization duration from near-bed current observations."
 keywords:
   - sediment mobility
   - sediment dynamics
   - critical shear stress
   - Shields parameter
   - settling velocity
-
+  - bed shear stress
+  - current forcing
+  - sediment remobilization
